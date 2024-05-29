@@ -1,0 +1,19 @@
+name: Push Event Workflow
+
+on: push 
+
+jobs:
+  unit-testing:
+    runs-on: ubuntu-latest 
+    
+    steps:
+    - name : Checkout code
+      uses : actions/checkout@v2
+      
+    - name : Install Packages 
+      run : |
+        pip install pytest
+        pip install tensorflow-cpu==2.3.0
+      
+    - name : Run tests 
+      run : pytest layered_model_test.py
